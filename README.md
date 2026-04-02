@@ -114,5 +114,6 @@ flatpak install --user -y flathub org.keepassxc.KeePassXC \
     flatpak install --user -y flathub org.telegram.desktop \
     flatpak install --user -y flathub com.interversehq.qView \
     flatpak install --user -y flathub com.google.Chrome \
-    flatpak install --user -y flathub org.kde.okular
+    flatpak install --user -y flathub org.kde.okular \
+    flatpak install --user -y flathub com.vscodium.codium
 ```
