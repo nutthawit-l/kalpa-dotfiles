@@ -93,16 +93,17 @@ git clone git@github.com:nutthawit-l/kalpa-dotfiles.git ~/.dotfiles
 stow -v -d ~/.dotfiles/stow_files -t ~ git
 ```
 
-[!TIP]
-Note: Managing Existing Files with --adopt
-
-If you already have configuration files in your home directory and want to bring them under Stow’s management without manually moving them, use the --adopt flag:
-
-```console
-stow -d stow_files -t ~ --adopt git
-```
-
-**Warning**: This will "pull" the content from your home directory into your dotfiless repository, overwriting the version in your repo with the local version. Use this only when you want to initialize your repository with your current system settings. Check git diff immediately after using this command to verify the changes.
+> **_TIP:_**
+> Managing Existing Files with --adopt
+>
+> If you already have configuration files in your home directory and want to bring them under Stow’s management without manually moving them, use the --adopt flag:
+>
+>```console
+>stow -v -d stow_files -t ~ --adopt git
+>```
+>
+>_Warning:_ This will "pull" the content from your home directory into your dotfiless repository, overwriting the version in your repo with the local version. 
+>Use this only when you want to initialize your >repository with your current system settings. Check git diff immediately after using this command to verify the changes.
 
 ### Installing Desktop Applications (Flatpak)
 
