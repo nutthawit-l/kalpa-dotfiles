@@ -1,0 +1,9 @@
+[user]
+	name = Nutthawit Lilawannasin
+	email = nutthawit-l@proton.me
+[init]
+	defaultBranch = main
+[credential]
+	helper = "!f() { /home/tie/.vscode-server/bin/e7fb5e96c0730b9deb70b33781f98e2f35975036/node /tmp/vscode-remote-containers-6d7fcebf-9039-46b0-a313-a308a5b7a0f5.js git-credential-helper $*; }; f"
+[safe]
+	directory = /home/tie/dominion

@@ -1,0 +1,55 @@
+#!/usr/bin/bash
+
+flatpak_install() {
+    local title=$1
+    local app_name=$2
+
+	if flatpak list --app | grep "$title" > /dev/null; then
+		echo -e "${BLUE}[Skip]${NC} Install ${title} with flatpak"
+	else
+		flatpak install --user -y flathub "$app_name"
+	fi
+}
+
+main() {
+	# Define color code
+	BLUE='\033[0;34m'
+	GREEN='\033[0;32m'
+	NC='\033[0m' # No color
+
+	CONTAINER_NAME="suse-template"
+	FOUND=$(podman ps -a --format "{{.Names}}" | awk -v t="$CONTAINER_NAME" '$1 == t')
+	
+	# Create suse-template distrobox
+	if [ -n "$FOUND" ]; then
+		echo -e "${BLUE}[Skip]${NC} Create ${CONTAINER_NAME} distrobox"
+	else
+		echo -e "${GREEN}[Run]${NC} Create ${CONTAINER_NAME} distrobox"
+		distrobox assemble create --file "${CONTAINER_NAME}.ini"
+	fi
+
+	CONTAINER_ID=$(podman ps -a --filter "name=^${CONTAINER_NAME}$" --format "{{.ID}}")	
+	podman commit "${CONTAINER_ID}" "${CONTAINER_NAME}:latest"
+
+	#FOUND=$(podman ps -a --format "{{.Names}}" | awk -v t="$CONTAINER_NAME" '$1 == t')
+	# Create suse distrobox
+	CONTAINER_NAME="suse"
+	echo -e "${GREEN}[Run]${NC} Create ${CONTAINER_NAME} distrobox"
+	distrobox assemble create --file "${CONTAINER_NAME}.ini"
+
+	# Install flatpak apps
+	flatpak_install KeePassXC org.keepassxc.KeePassXC
+	flatpak_install Telegram org.telegram.desktop
+	flatpak_install qView com.interversehq.qView 
+	flatpak_install GoogleChrome com.google.Chrome
+	flatpak_install Okular org.kde.okular 
+	
+	# Allow me execute any command without password
+	sudo cp -v 40-run0-nopasswd.rules /etc/polkit-1/rules.d/
+	sudo groupadd wheel
+	sudo usermod -aG wheel $USER
+}
+
+main
+
+

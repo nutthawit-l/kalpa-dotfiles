@@ -1,0 +1,23 @@
+# Use the openSUSE Tumbleweed base image
+FROM registry.opensuse.org/opensuse/distrobox:latest
+
+# Set the hostname (Note: Hostname is usually set at runtime with --hostname)
+ENV HOSTNAME=opensuse-tumbleweed-template
+
+# Install additional packages and set up VS Code repository
+# We combine these into one RUN command to keep the image size down
+RUN zypper -n install curl git make neovim stow tree vi yt-dlp && \
+    # Import Microsoft GPG key
+    rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
+    # Add the VS Code Repository
+    echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" \
+    | tee /etc/zypp/repos.d/vscode.repo > /dev/null && \
+    # Refresh repositories and install VS Code
+    zypper -n ref && \
+    zypper -n install code
+
+# Clean up zypper cache to save space
+RUN zypper clean -a
+
+# Default command
+CMD ["/bin/bash"]

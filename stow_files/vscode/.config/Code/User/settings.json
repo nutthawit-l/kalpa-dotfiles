@@ -1,0 +1,22 @@
+{
+    "keyboard.dispatch": "keyCode",
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "workbench.startupEditor": "none",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "dev.containers.dockerPath": "podman",
+    "workbench.colorTheme": "Monokai",
+    "debug.breakpointsView.presentation": "tree",
+    "diffEditor.codeLens": true,
+    "claudeCode.preferredLocation": "panel",
+    "workbench.externalBrowser": "firefox",
+    "dev.containers.dockerComposePath": "podman-compose",
+    "dev.containers.dockerSocketPath": "/run/user/1000/podman/podman.sock",
+    "dev.containers.optimisticallyLaunchDocker": false,
+    "remote.SSH.useExecServer": true,
+    "window.autoDetectColorScheme": true,
+    "workbench.preferredLightColorTheme": "Monokai",
+    "dev.containers.logLevel": "trace",
+    "remote.SSH.showLoginTerminal": true
+}

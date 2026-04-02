@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+distrobox-export --bin /usr/bin/git --export-path $HOME/.local/bin
+distrobox-export --bin /usr/bin/nvim --export-path $HOME/.local/bin
+distrobox-export --bin /usr/bin/stow --export-path $HOME/.local/bin
+distrobox-export --bin /usr/bin/tree --export-path $HOME/.local/bin
+distrobox-export --bin /usr/bin/yt-dlp --export-path $HOME/.local/bin
