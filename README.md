@@ -90,7 +90,7 @@ git clone git@github.com:nutthawit-l/kalpa-dotfiles.git ~/.dotfiles
 2) Deploy configurations using Stow:
 
 ```console
-stow -d ~/.dotfiles/stow_files -t ~ git
+stow -v -d ~/.dotfiles/stow_files -t ~ git
 ```
 
 [!TIP]
